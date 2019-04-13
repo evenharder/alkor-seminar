@@ -1,0 +1,45 @@
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+\setbeamertemplate{items}[circle]
+\usepackage{minted}
+
+
+\begin{document}
+ 
+    \begin{frame}
+        \onslide<1-> 포화이진트리(perfect binary tree)가 주어진다.
+        \begin{itemize}
+            \item<2-> root를 1번째로 두면, $ x $번째 정점의 자식은 $ 2x $번째, $ 2x+1 $번째
+        \end{itemize}
+        \onslide<3-> leaf 바로 위의 정점들부터 보자.
+        \begin{itemize}
+            \item<4-> 정점 $ x $에 대해, 한쪽은 길이가 $ d[2x] $, 한쪽은 $ d[2x+1] $
+            \item<5-> 이 경우 적은 쪽에 차만큼 더해주어야 한다.
+            \item<6-> 그러면 그쪽 경로는 $ \max(d[2x], d[2x+1]) $로 통일된다.
+            \item<7-> 이를 계속 반복하면 한 level를 해결 가능하고, 그럼 바로 위의 level도 마찬가지로...!
+        \end{itemize}
+        
+    \end{frame}
+    
+    \begin{frame}
+        \url{http://boj.kr/6535d79448104e9cb7e2e7ca225ec804}
+                  
+        \onslide  
+        \begin{itemize}
+            \item $ 2^n - 1 $에서 $ 1 $까지 줄여가면 모든 정점을 순회 가능하다!
+            \item 종종 쓰이는 트릭이니 (예시 : segment tree) 잘 알아두자.
+        \end{itemize}
+    \end{frame}
+\end{document}

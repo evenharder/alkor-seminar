@@ -1,0 +1,46 @@
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+\setbeamertemplate{items}[circle]
+\usepackage{minted}
+
+
+\begin{document}
+ 
+    \begin{frame}
+        \onslide<1-> 기본적으로 `칸 $ (i, j) $까지 거치면서 얻을 수 있는 최대 가치'을 저장하는 동적 계획법으로 접근해야 한다.
+        \begin{itemize}
+            \item<2-> 칸에 도달하는 방법 : 왼쪽, 오른쪽, (위).
+            \item<3-> 현재 칸 기준으로 왼쪽 또는 바로 위에서 오는 경우만 고려해보자.
+            \begin{itemize}
+                \item<4-> 그럼 $ l[i][j] = min(l[i][j-1], dp[i-1][j]) + a[i][j] $.
+                \item<5-> $ (i, j-1) $ 또는 $ (i-1, j) $를 방문해야 하기 때문!
+                \item<5-> 오른쪽에서 오는 경우는 고려할 필요가 없다 {\minigray(한 번 밟은 칸은 다시 밟을 수 없음)}
+            \end{itemize}
+            \item<6-> 오른쪽도 비슷하게 정의할 수 있다.
+            \item<7-> 각 칸별로 두 값의 최대값을 취하면 된다. 행마다 반복하자.
+        \end{itemize}
+        \onslide<8-> 총 시간 복잡도는 $ O(NM) $.
+    \end{frame}
+    
+    \begin{frame}
+        Code : \url{http://boj.kr/729bb42602d14ee88b7e81568b9dce9b}
+        \begin{itemize}
+            \item 토글링(toggling)을 이용한 공간 복잡도 $ O(M) $ 코드
+            \item 이렇게 바로 전 열의 상태만 알아도 되는 경우 공간 복잡도(와 약간의 수행시간)을 줄일 수 있습니다.
+        \end{itemize}
+    \end{frame}
+
+
+\end{document}

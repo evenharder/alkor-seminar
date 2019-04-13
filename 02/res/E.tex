@@ -1,0 +1,51 @@
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+\setbeamertemplate{items}[circle]
+\usepackage{minted}
+
+
+\begin{document}
+ 
+    \begin{frame}
+        \onslide<1-> 2-친구와 3-친구 관계를 모두 없애야 한다.
+        \begin{itemize}
+        \item<2-> 2-친구의 경우, A랑도 B랑도 친구인 경우이므로 없애야 한다.
+        \end{itemize}
+        \onslide<3-> 문제가 되는 것은 3-친구 관계.
+        \begin{itemize}
+            \item<4-> A의 친구들과 B의 친구들끼리 연결된 그래프에서, 최소한의 친구들(과 각자의 연결관계)을 제거해서 선분을 모두 없애야 한다.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+        사실 대단히 전형적인 문제...
+        \begin{itemize}
+            \item<1-> 3-친구 제거 문제는 이분 그래프에서의 vertex cover 문제와 동치이다.
+            \item<2-> 그리고 이분 그래프에서 minimum vertex cover = maximum matching (K\"onig's Theorem)
+            \item<3-> 즉 이분 그래프에서의 매칭을 진행하면 된다.
+        \end{itemize}
+        \onslide<4-> 네트워크 플로우 이론을 이용한 간단한 $ O(VE) = O(N^{\,3}) $ 이분 매칭 알고리즘이 존재한다.
+        
+    \end{frame}
+
+    \begin{frame}
+        Code : \url{http://boj.kr/4a3936b589a8442faf55800884e9759a}
+        \begin{itemize}
+            \item {\color{blue} \href{https://kks227.blog.me/220804885235}{네트워크 플로우 관련 블로그 (kks227)}}
+            \item {\color{blue}\href{https://kks227.blog.me/220807541506}{이분 매칭 관련 블로그 (kks227)}}
+            \item {\color{blue} \href{https://kks227.blog.me/220816033373}{Hopcroft-Karp Algorithm (kks227)}} : 시간복잡도 $ O(EV^{\,0.5}) $.
+        \end{itemize}
+    \end{frame}
+\end{document}

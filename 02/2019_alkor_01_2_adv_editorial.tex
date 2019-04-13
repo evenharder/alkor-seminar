@@ -1,0 +1,189 @@
+%!TeX TXS-program:compile = txs:///xelatex/[--shell-escape]
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+\usepackage{standalone}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\definecolor{ccwwff}{rgb}{0.8,0.4,1}
+\definecolor{wqwqwq}{rgb}{0.3764705882352941,0.3764705882352941,0.3764705882352941}
+\definecolor{ffffff}{rgb}{1,1,1}
+
+\setbeamertemplate{items}[circle] % 
+\usepackage{minted}
+\setminted{breaklines=true, tabsize = 2, breaksymbolleft=}
+\usemintedstyle{perldoc}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usefonttheme[stillsansserifmath]{serif}
+\setmainfont{Noto Sans CJK KR}
+\setmonofont{Ubuntu Mono}
+
+\definecolor{crimsonred}{HTML}{760023}
+\definecolor{akw}{HTML}{009f6b}
+\definecolor{xmf}{HTML}{e74c3c}
+
+\newcommand{\insertsectionpage}[4]{
+  \begin{frame}
+  %\vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,rounded=true]{title}
+    \usebeamerfont{title}\textbf{\insertsectionhead}\par%
+    \insertsubsectionhead%
+  \end{beamercolorbox}
+  \ifx&#1&%
+  \else%
+  {\small출처 : #1}\par\vskip 5pt%
+  \fi%
+  {\scriptsize제출 : #2 / \scriptsize정답 : {\color{akw}#3}}\par%
+  {\scriptsize평균 시도 : #4}\par%
+  {\scriptsize}
+  \vfill
+  \end{frame}
+}
+\setbeamertemplate{navigation symbols}{}
+
+%
+\makeatletter
+\def\th@lemstyle{%
+    \normalfont % body font
+    \setbeamercolor{block title example}{bg=orange,fg=white}
+    \setbeamercolor{block body example}{bg=orange!20,fg=black}
+    \def\inserttheoremblockenv{exampleblock}
+  }
+\makeatother
+\newcommand{\minigray}{\scriptsize\color{gray}}
+\newcommand{\smallgray}{\footnotesize\color{gray}}
+\theoremstyle{lemstyle}
+\newtheorem*{mylemma}{보조정리}
+
+\graphicspath{{./res/}}
+\title[1학기 고급반 2주차 모의고사 풀이]{2019 AlKor 1학기 고급반 2주차 모의고사 풀이}
+\subtitle{고려대학교 정보보호학부 알고리즘 문제해결 동아리}
+\author[2019 AlKor]{Prepared by \texttt{@evenharder}}
+\date{2019년 4월 6일}
+%\institute{2019 AlKor}
+\begin{document}
+    
+    \begin{frame}
+        \titlepage
+    \end{frame}
+    
+    \begin{frame}{머릿말}
+        \begin{itemize}
+            \item \textbf{풀이를 보기 전에 문제에 대해 더 생각을 해보세요!}
+            \item {\bf \color{blue}\href{https://www.acmicpc.net/blog/view/55}{BOJ 101}}과 {\bf \color{blue}\href{https://www.acmicpc.net/blog/view/70}{자주 틀리는 요인}} 문서는 숙지하셔야 합니다.
+            \item 곰곰히 생각해보면 풀 수 있는 문제들로 구성했습니다.
+            \item 1주차보다 쉽게 했고, 보다 만족스러운 참여도와 결과가 보였습니다. 처음 3문제는 모두 접근해볼만한 난이도로 준비하는 게 좋아보입니다.
+            \begin{itemize}
+            \item 풀이 순서는 제가 느낀 난이도순이지만 애매한 부분이 많습니다.
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}{머릿말}
+        \begin{itemize}
+            \item 모든 문제를 지금 푸는 건 어려울 수 있습니다. 하나하나씩 풀어보세요.
+            \item 때문에 (가능하면) 각 문제 별로 정답 코드를 제공하려고 합니다.
+            \begin{itemize}
+            \item 대부분 정해 코드가 공식 대회 사이트에 있기에 비공개할 이유가 없습니다.
+            \item 코드를 보면 풀이를 보다 쉽게 이해할 수 있습니다.
+            \item 물론 어느 상황에서든 \textbf{표절은 절대 금지입니다.}
+            \end{itemize}
+            \item 제출, 정답 및 정답율은 2019년 4월 6일 16:00 (UTC +9) 기준입니다.
+            \item {\smallgray 힘들어서 해설지 퀄리티가 점점 하락하고 있습니다...}
+        \end{itemize}
+    \end{frame}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    \section{Problem A}
+    \subsection{속이기 (BOJ 11895)}
+    \insertsectionpage{(oj.uz) GA5 1번}{15}{15}{1.27}
+    \input{./res/A.tex}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Problem C}
+    \subsection{이진 트리 (BOJ 13325)} 
+    \insertsectionpage{ACM ICPC Daejeon Nationalwide Internet Competition 2016 A번}{10}{10}{2}
+    \input{./res/C.tex}    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+    \section{Problem B}
+    \subsection{순열 그래프의 연결성 판별 (BOJ 7982)}
+    \insertsectionpage{AMPPZ 2012 I번}{13}{10}{3.6}
+    \input{./res/B.tex}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Problem D}
+    \subsection{Bricks (BOJ 10510)}
+    \insertsectionpage{CERC 2014 I번}{9}{8}{3.38}
+    \input{./res/D.tex}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Problem H}
+    \subsection{생물학자 (BOJ 3116)}
+    \insertsectionpage{Croatian Highschool Competitions in Informatics 2009 National Competition \#2 Seniors 1번}{7}{7}{2.29}
+    \input{./res/H.tex}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Problem G}
+    \subsection{로봇 조종하기 (BOJ 2169)}
+    \insertsectionpage{KOI 2002 고등부 1번}{9}{9}{2.11}
+    \input{./res/G.tex}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Problem E}
+    \subsection{알 수도 있는 사람 (BOJ 13358)}
+    \insertsectionpage{???}{5}{5}{2.4}
+    \input{./res/E.tex}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Problem I}
+    \subsection{장난감 정리 로봇 (BOJ 8875)}
+    \insertsectionpage{IOI 2013 5번}{4}{4}{2.5}
+    \input{./res/I.tex}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Problem F}
+    \subsection{A highway and the seven dwarfs (BOJ 7057)}
+    \insertsectionpage{CEOI 2002 4번}{2}{1}{10}
+    \input{./res/F.tex}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{분류}
+    
+    \begin{frame}
+        \begin{enumerate}%[label=*\Alph]
+            \item[A.] 낚시, 그리디
+            \item[B.] 스위핑
+            \item[C.] 트리
+            \item[D.] 구현, 정수론
+            \item[E.] 이분 매칭
+            \item[F.] 기하, 볼록 껍질
+            \item[G.] 동적 계획법
+            \item[H.] 구현
+            \item[I.] 이분탐색, 우선순위 큐, 그리디
+        \end{enumerate}
+    \end{frame}
+    
+\end{document}

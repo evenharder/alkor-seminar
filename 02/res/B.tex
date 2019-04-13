@@ -1,0 +1,43 @@
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+\setbeamertemplate{items}[circle]
+\usepackage{minted}
+
+
+\begin{document}
+ 
+    \begin{frame}
+        \onslide<1-> 그래프는 수열 $ \{a_i\}  $에서 연결해서 생성할 수 있다. 뭘 알 수 있을까?
+        \begin{itemize}
+        \item<2-> 컴포넌트는 \textbf{연속}되어 나타난다.
+        \item<3-> 어떤 구간 $ L $이 컴포넌트가 되었다고 가정하자. 그러면
+            \begin{itemize}
+            \item<4-> $ L $ 뒤로는 $ L $의 최대 원소보다 큰 값만 와야 하며
+            \item<5-> $ L $ 앞에는 $ L $의 최소 원소보다 작은 값만 와야 한다.
+            \end{itemize}
+        \item<6-> 조금 정리해보면, $ \max(a_1, a_2, \cdots, a_k) = k$ 일 때 컴포넌트가 분리된다.
+        \begin{itemize}
+        \item<7-> $ \max(a_1, a_2, \cdots, a_k) = k$이면 $ \{a_1, a_2, \cdots, a_k\} = \{1, 2, \cdots, k\}$
+        \end{itemize}
+        \end{itemize}
+        \onslide<7-> 정답 출력은 각 컴포넌트의 최대 원소를 저장하면 어렵지 않게 할 수 있다.
+        
+    \end{frame}  
+    
+
+    \begin{frame}
+        Code : \url{http://boj.kr/f88c861f7c114fabbb214e24840d2fd5}
+    \end{frame}
+\end{document}

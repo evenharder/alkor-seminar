@@ -1,0 +1,42 @@
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+\setbeamertemplate{items}[circle]
+\usepackage{minted}
+
+
+\begin{document}
+ 
+    \begin{frame}
+        \onslide<1-> 검은 벽돌이 $ b $개, 흰 벽돌이 $ w $개 있으면 나눌 수 있는 비율은 $ \frac{b}{\gcd(b, w)} : \frac{w}{\gcd(b, w)} $.
+        \begin{itemize}
+        \item<2> 해당 비율을 만족하며 벽돌을 분리할 수 있으면 분리해야 한다.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+        \onslide<1-> 기하학적으로 좌표평면에 놓고 접근해보자.
+        \begin{itemize}
+            \item<2-> 좌표평면의 원점에서 시작해서 \texttt{B} 1개당 $ x $좌표, \texttt{W} 1개당 $ y $좌표 1 증가
+            \item<3-> 이 때 $ wx - by = 0 $과의 교점 중 격자점의 개수를 구하면 된다.
+        \end{itemize}
+        \onslide<4-> 선분 하나하나씩 옮겨가며 따지면 $ O(N) $에 해결 가능.
+        
+        \onslide<5-> 문제를 굳이 이렇게 바꾸지 않아도 구현은 비슷할 것 같지만 예외처리가 곤혹스러울 수 있다.
+    \end{frame}
+
+    \begin{frame}
+        Code : \url{http://boj.kr/742141a744d1427cb61e2e782ed0f74c}
+    \end{frame}
+\end{document}

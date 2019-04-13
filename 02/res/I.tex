@@ -1,0 +1,69 @@
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+\setbeamertemplate{items}[circle]
+\usepackage{minted}
+
+
+\begin{document}
+ 
+    \begin{frame}
+        \onslide<1-> 모든 장난감 로봇이 각자 $ k $개 이하의 장난감을 정리하면서 모든 장난감을 치울 수 있는지 판별할 수 있을까?
+        \begin{itemize}
+            \item<2-> Yes! Parametric search를 해보자
+        \end{itemize}
+        \onslide<3-> 기본적인 접근은 그리디.
+        \begin{itemize}
+            \item<4-> 연약한 로봇은 크기에 상관없이, 작은 로봇은 무게에 상관없이 짐을 들 수 있다. 
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+        \onslide<1-> 우선 연약한(무게 제한이 있는) 로봇부터 생각해보자.
+        \begin{itemize}
+            \item<2-> $ x < y$일 때, 제한 $ x $인 연약한 로봇이 정리할 수 있는 장난감은 제한 $ y $인 연약한 로봇도 정리할 수 있다.
+            \item<3-> 그러므로 (무게) 제한에 대한 오름차순으로 연약한 로봇을 정렬하자.
+            \item<4-> 그럼 각 로봇이 추가되면서 제거할 수 있는 장난감들이 (무게에 따라) 추가된다.
+            \item<5-> 이 상태에서, 각 로봇당 가장 큰 장난감 $ k $개를 제거하자.
+        \end{itemize}
+        
+    \end{frame}
+    
+    \begin{frame}
+        \onslide<1-> 왜 이렇게 할까?
+            \begin{itemize}
+            \item<2-> 나머지를 맡을 작은 로봇들은 무게의 제약을 받지 않기 때문에 큰 장난감부터 정리해야 한다. 
+            \end{itemize}
+        \onslide<3-> 이젠 작은(크기 제한이 있는) 로봇을 생각해볼 차례.
+        \begin{itemize}
+            \item<4-> 제한이 큰 로봇부터 가장 무거운 장난감들을 최대 $ k $개까지 정리한다.
+            \item<5-> 정리할 수 없으면 $ k $개일 때 정리 불가.
+        \end{itemize}
+        \onslide<6-> 전반적인 구현 : priority queue 등의 자료구조를 이용
+        
+        \onslide<7-> 총 복잡도는 $ O(N\, \lg\, N \lg(A+B)) $.
+    \end{frame}
+    
+    \begin{frame}[fragile]
+        Code : \url{http://boj.kr/f3599f35f0f64a988dd3413d492f2f36}
+        \begin{itemize}
+            \item C++의 \verb|priority_queue|는 max-heap이라, 큰 값이 먼저 올라온다.
+            \item \verb|priority_queue|에 원하는 비교 연산자를 넣는 방법?
+            \begin{itemize}
+            \item C++11의 경우 \verb|auto f = [] () {};| 꼴로 익명 함수를 통해 비교 함수를 만들고, \verb|priority_queue<T, vector<T>, decltype(f)> pq(f);|꼴로 선언하면 된다 (\verb|T|는 타입).
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+\end{document}

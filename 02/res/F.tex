@@ -1,0 +1,122 @@
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+\setbeamertemplate{items}[circle]
+\usepackage{minted}
+
+
+\begin{document}
+ 
+    \begin{frame}
+        \onslide<1-> 직선이 평면에 있는 점들을 분할하는지를 확인하자.
+        \begin{itemize}
+            \item<2-> convex hull을 만들고, 직선이 이를 통과하는지 판별하는 것과 동치.
+        \end{itemize}
+        \onslide<3-> standard한 문제이기에 다양한 풀이가 있다.
+        \begin{itemize}
+            \item<4-> 여기서는 보다 간결한 이분탐색을 이용한 풀이를 설명한다.
+        \end{itemize}
+        
+    \end{frame}
+    
+    \begin{frame}
+        \onslide<1-> convex hull을 통과하는 방향을 생각해보자.
+        \begin{itemize}
+            \item<2-> 이 방향에서 가장 멀리 떨어진 두 점을 생각해볼 수 있다.
+            \item<3-> 각 방향별로 이 두 점을 알면...?
+            \begin{itemize}
+                \item<4-> 두 점을 연결한 선분과 직선이 교차하는지 판별하면 된다!
+            \end{itemize}
+            \item<5-> 그럼 각도를 조금씩 기울여보자. 언제 두 점이 바뀔까?
+            \item<6-> 직선의 기울기가 두 점이 속한 convex hull의 선분의 기울기를 넘어서면 된다!
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{center}
+            \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm, scale=0.3]
+            \clip(-18.896892689405195,-12.518551037588734) rectangle (0.6303288827343082,10.016027443340084);
+            \draw [line width=1.5pt] (-11.22606159565516,4.5915000519107005)-- (-6.890421054925437,4.006919304846019);
+            \draw [line width=1.5pt] (-6.890421054925437,4.006919304846019)-- (-5.0960082449606094,1.6531034367065363);
+            \draw [line width=1.5pt] (-5.0960082449606094,1.6531034367065363)-- (-4.18,-2.5);
+            \draw [line width=1.5pt] (-4.18,-2.5)-- (-6.372730499264858,-7.09482217668112);
+            \draw [line width=1.5pt] (-6.372730499264858,-7.09482217668112)-- (-10.616362022738443,-8.852047409064667);
+            \draw [line width=1.5pt] (-10.616362022738443,-8.852047409064667)-- (-12.8,-7.46);
+            \draw [line width=1.5pt] (-12.8,-7.46)-- (-13.94,-3.56);
+            \draw [line width=1.5pt] (-11.22606159565516,4.5915000519107005)-- (-13.94,-3.56);
+            \draw [line width=1.5pt,color=ccwwff,domain=-18.896892689405195:0.6303288827343082] plot(\x,{(-2.2823173875755023--1.235346774086635*\x)/8.09154325096045});
+            \begin{scriptsize}
+            \draw [fill=ffffff] (-11.22606159565516,4.5915000519107005) circle (10pt);
+            \draw [fill=wqwqwq] (-6.890421054925437,4.006919304846019) circle (10pt);
+            \draw [fill=wqwqwq] (-5.0960082449606094,1.6531034367065363) circle (10pt);
+            \draw [fill=wqwqwq] (-4.18,-2.5) circle (10pt);
+            \draw [fill=wqwqwq] (-6.372730499264858,-7.09482217668112) circle (10pt);
+            \draw [fill=ffffff] (-10.616362022738443,-8.852047409064667) circle (10pt);
+            \draw [fill=wqwqwq] (-12.8,-7.46) circle (10pt);
+            \draw [fill=wqwqwq] (-13.94,-3.56) circle (10pt);
+            \end{scriptsize}
+            \end{tikzpicture}
+        \end{center}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{center}
+            \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm, scale=0.3]
+            \clip(-18.896892689405195,-12.51855103758873) rectangle (0.6303288827343082,10.016027443340082);
+            \draw [line width=1.5pt] (-11.22606159565516,4.5915000519107005)-- (-6.890421054925437,4.006919304846019);
+            \draw [line width=1.5pt] (-6.890421054925437,4.006919304846019)-- (-5.0960082449606094,1.6531034367065363);
+            \draw [line width=1.5pt] (-5.0960082449606094,1.6531034367065363)-- (-4.18,-2.5);
+            \draw [line width=1.5pt] (-4.18,-2.5)-- (-6.372730499264858,-7.09482217668112);
+            \draw [line width=1.5pt] (-6.372730499264858,-7.09482217668112)-- (-10.616362022738443,-8.852047409064667);
+            \draw [line width=1.5pt] (-10.616362022738443,-8.852047409064667)-- (-12.8,-7.46);
+            \draw [line width=1.5pt] (-12.8,-7.46)-- (-13.94,-3.56);
+            \draw [line width=1.5pt] (-11.22606159565516,4.5915000519107005)-- (-13.94,-3.56);
+            \draw [line width=1.5pt,dotted,color=ccwwff,domain=-18.896892689405195:0.6303288827343082] plot(\x,{(-2.2701--1.24*\x)/8.09});
+            \draw [line width=1.5pt,color=ccwwff,domain=-18.896892689405195:0.6303288827343082] plot(\x,{(--30.476411575757446--4.170149386117076*\x)/7.042411099720561});
+            \begin{scriptsize}
+            \draw [fill=ffffff] (-11.22606159565516,4.5915000519107005) circle (10pt);
+            \draw [fill=wqwqwq] (-6.890421054925437,4.006919304846019) circle (10pt);
+            \draw [fill=wqwqwq] (-5.0960082449606094,1.6531034367065363) circle (10pt);
+            \draw [fill=wqwqwq] (-4.18,-2.5) circle (10pt);
+            \draw [fill=ffffff] (-6.372730499264858,-7.09482217668112) circle (10pt);
+            \draw [fill=wqwqwq] (-10.616362022738443,-8.852047409064667) circle (10pt);
+            \draw [fill=wqwqwq] (-12.8,-7.46) circle (10pt);
+            \draw [fill=wqwqwq] (-13.94,-3.56) circle (10pt);
+            \end{scriptsize}
+            \end{tikzpicture}
+        \end{center}
+    \end{frame}
+    
+    \begin{frame}
+        \onslide<1-> convex hull을 위쪽과 아래쪽으로 쪼개자.
+        \begin{itemize}
+            \item<2-> Andrew's Monotone Chain Algorithm으로 쉽게 구축 가능.
+        \end{itemize}
+        \onslide<3-> 양 반껍질은 기울기 순으로 정렬이 되어 있다.
+        \begin{itemize}
+        \item<4-> 여기서 이분탐색을 진행해서 해당 기울기 이상이 되는 점을 잡자.
+        \item<5-> 이 점이 주어진 직선의 기울기로부터 `가장 멀리 떨어져있는 점'이 된다! 
+        \item<6-> 선분과 직선이 만나는지 확인만 하면 끝.
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+        Code : \url{http://boj.kr/514a4fadbe0d4521b22c45bef6bb8cea}
+        \begin{itemize}
+            \item {\color{blue}\href{https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain}{Andrew's Monotone Chain Algorithm}}
+            \item CCW도 익숙해집시다
+        \end{itemize}
+        
+    \end{frame}
+\end{document}

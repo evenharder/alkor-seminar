@@ -1,0 +1,47 @@
+\documentclass[hyperref={unicode}]{beamer}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\usepackage[hangul]{kotex}
+
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath, amssymb}
+\usepackage{colortbl}
+\usepackage{textcomp}
+\usepackage{multirow}
+\setbeamertemplate{items}[circle]
+\usepackage{minted}
+
+
+\begin{document}
+    
+    \begin{frame}
+        \onslide<1-> 서로 다른 두 박테리아의 쌍에 대해
+        \begin{itemize}
+            \item<2-> 이 두 박테리아가 만나는지
+            \item<3-> 만날 경우, 그 자리에 있는 다른 박테리아가 있는지
+        \end{itemize}
+        \onslide<3-> 를 계산해볼 수 있다.
+    \end{frame}
+    
+    \begin{frame}
+        \onslide<1-> 두 박테리아가 만나는지는 어떻게 확인할 수 있을까?
+        \begin{itemize}
+            \item<2-> 상대 위치와 상대속도를 고려하면 확인 가능.
+        \end{itemize}
+        \onslide<3-> 그럼 이 때 다른 박테리아가 있는지는?
+        \begin{itemize}
+            \item<4-> 만날 수 있는 박테리아의 초기 위치와 방향은 {\smallgray(각 방향별로)} 8가지밖에 없다!
+            \item<5-> 이분 탐색이나 mapping 등을 통해 확인 가능.
+        \end{itemize}
+        \onslide<6-> 박테리아 쌍은 $ O(N^{\,2}) $개 있으므로 총 시간복잡도 $ O(N^{\,2} \lg N) $에 가능하다.
+    \end{frame}
+    
+    \begin{frame}
+        Code : \url{http://boj.kr/c9fdc71d9b244ec3a20b60acbe4841d4}
+    \end{frame}
+    
+\end{document}
